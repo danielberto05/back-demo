@@ -1,5 +1,12 @@
-# back-demo
+# Back Demo
+
+Testar localemente
 
 ```bash
-docker run -t -p 8080:8000 --env PUB_SUB_TOPIC=pubsub_topic --env GOOGLE_APPLICATION_CREDENTIALS=./credentials/credentials.json back-demo:v1
+docker build -t back-demo:latest && \
+docker run -t -p 8080:8000 \
+	--env PUB_SUB_TOPIC=notify-client-topic \
+	--env GOOGLE_APPLICATION_CREDENTIALS=./credentials/credentials.json \
+	back-demo:latest
+
 ```
