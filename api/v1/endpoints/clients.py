@@ -11,7 +11,7 @@ __, project_id = google.auth.default()
 
 topic_id = os.getenv("PUB_SUB_TOPIC", None)
 
-clients_path = os.path.join("data", "clients.json", [])
+clients_path = os.path.join("data", "clients.json")
 
 
 class Client(BaseModel):

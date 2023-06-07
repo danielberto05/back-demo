@@ -7,7 +7,7 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-ENV SEVICE=back-demo
+ENV SEVICE=back-poc-demo
 
 EXPOSE 8080
 
