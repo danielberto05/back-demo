@@ -9,9 +9,9 @@ import google.auth
 
 __, project_id = google.auth.default()
 
-topic_id = os.getenv("PUB_SUB_TOPIC")
+topic_id = os.getenv("PUB_SUB_TOPIC", None)
 
-clients_path = os.path.join("data", "clients.json")
+clients_path = os.path.join("data", "clients.json", [])
 
 
 class Client(BaseModel):
@@ -53,7 +53,8 @@ async def create_client(request_client: ClientCreate):
     with open(clients_path, "w") as clients_file:
         clients_file.write(json.dumps(clients, indent=4))
     
-    await publish_message(client)
+    if topic_id:
+        await publish_message(client)
 
     return {"clients": client}
 
