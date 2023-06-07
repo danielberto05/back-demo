@@ -1,13 +1,13 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-east1-docker.pkg.dev/$PROJECT_ID/serverless-demo/back-demo:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-east1-docker.pkg.dev/$PROJECT_ID/$PROJECT_ID/back-poc-demo:$BUILD_ID', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-east1-docker.pkg.dev/$PROJECT_ID/serverless-demo/back-demo:$COMMIT_SHA']
+  args: ['push', 'us-east1-docker.pkg.dev/$PROJECT_ID/$PROJECT_ID/back-poc-demo:$BUILD_ID']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'back-demo', '--image', 'us-east1-docker.pkg.dev/$PROJECT_ID/serverless-demo/back-demo:$COMMIT_SHA', '--region', 'us-east1']
+  args: ['run', 'deploy', 'back-poc-demo', '--image', 'us-east1-docker.pkg.dev/$PROJECT_ID/$PROJECT_ID/back-poc-demo:$BUILD_ID', '--region', 'us-east1']
 images:
-- us-east1-docker.pkg.dev/$PROJECT_ID/serverless-demo/back-demo:$COMMIT_SHA
+- us-east1-docker.pkg.dev/$PROJECT_ID/$PROJECT_ID/back-poc-demo:$BUILD_ID
